@@ -1,0 +1,9 @@
+INSERT INTO account(id, balance, locked) VALUES (1, 1000, false);
+INSERT INTO account(id, balance, locked) VALUES (2, 2000, false);
+INSERT INTO account(id, balance, locked) VALUES (3, 3000, false);
+INSERT INTO account(id, balance, locked) VALUES (4, 4000, true);
+INSERT INTO account(id, balance, locked) VALUES (5, 100, false);
+INSERT INTO account(id, balance, locked) VALUES (6, 200, false);
+INSERT INTO account(id, balance, locked) VALUES (7, 300, true);
+INSERT INTO account(id, balance, locked) VALUES (8, 400, false);
+INSERT INTO account(id, balance, locked) VALUES (9, -100, false);
