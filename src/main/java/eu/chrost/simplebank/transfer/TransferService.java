@@ -3,10 +3,12 @@ package eu.chrost.simplebank.transfer;
 import eu.chrost.simplebank.account.Account;
 import eu.chrost.simplebank.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
 @RequiredArgsConstructor
+@Component
 public class TransferService {
     private final AccountRepository accountRepository;
 
