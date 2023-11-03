@@ -3,17 +3,13 @@ package eu.chrost.simplebank.transfer;
 import eu.chrost.simplebank.account.Account;
 import eu.chrost.simplebank.account.AccountRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
-@Service
 @RequiredArgsConstructor
 public class TransferService {
     private final AccountRepository accountRepository;
 
-    @Transactional
     public void makeTransfer(long fromAccountId, long toAccountId, BigDecimal amount) {
         Account to = accountRepository.findById(toAccountId).get();
         to.setBalance(to.getBalance().add(amount));
