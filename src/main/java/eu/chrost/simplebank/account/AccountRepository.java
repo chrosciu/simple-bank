@@ -1,9 +1,6 @@
 package eu.chrost.simplebank.account;
 
-import java.util.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AccountRepository {
-    Account save(Account account);
-
-    Optional<Account> findById(Long id);
+public interface AccountRepository extends JpaRepository<Account, Long> {
 }

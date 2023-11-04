@@ -1,3 +1,17 @@
 simple-bank:
   runner:
     active: true
+
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        orm:
+          jdbc:
+            bind: TRACE
