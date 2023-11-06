@@ -27,12 +27,6 @@ public class SimpleBankApplicationRunner implements ApplicationRunner {
         var account2 = Account.builder().id(2L).balance(BigDecimal.valueOf(2000)).build();
         accountRepository.save(account1);
         accountRepository.save(account2);
-
-        transferService.makeTransfer(1L, 2L, BigDecimal.valueOf(200));
-
-        account1 = accountRepository.findById(1L).get();
-        account2 = accountRepository.findById(2L).get();
-        log.info("a1: {}", account1.getBalance());
-        log.info("a2: {}", account2.getBalance());
+        log.info("Accounts created");
     }
 }
