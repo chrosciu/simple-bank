@@ -11,8 +11,9 @@ import org.springframework.test.context.ActiveProfiles;
 import java.math.BigDecimal;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatIllegalStateException;
 
-@SpringBootTest
+@SpringBootTest(properties = {"simple-bank.money-laundering.threshold=400"})
 @ActiveProfiles("test")
 public class SimpleBankApplicationTests {
     @Autowired
@@ -35,5 +36,17 @@ public class SimpleBankApplicationTests {
 
         assertThat(accountRepository.findById(1L).get().getBalance()).isEqualTo(BigDecimal.valueOf(800));
         assertThat(accountRepository.findById(2L).get().getBalance()).isEqualTo(BigDecimal.valueOf(2200));
+    }
+
+    @Test
+    void shouldDetectTransfersAboveMoneyLaunderingThreshold() {
+        var account1 = Account.builder().id(1L).balance(BigDecimal.valueOf(1000)).build();
+        var account2 = Account.builder().id(2L).balance(BigDecimal.valueOf(2000)).build();
+        accountRepository.save(account1);
+        accountRepository.save(account2);
+
+        assertThatIllegalStateException().isThrownBy(() -> {
+            transferService.makeTransfer(1L, 2L, BigDecimal.valueOf(500));
+        });
     }
 }
